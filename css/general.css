@@ -27,8 +27,150 @@ body {
 a,
 button {
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.02);
 }
 
 .hidden {
-  display: none;
+  display: none !important;
+}
+
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.form-container {
+  background-color: white;
+  box-shadow: 20px 20px 95px rgba(0, 0, 0, 0.15);
+  padding: 40px 32px;
+  border-radius: 50px;
+  width: 500px;
+}
+
+.form-title {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 44px;
+}
+
+.form-title-line {
+  width: 80%;
+  border: 2px solid var(--blue);
+  border-radius: 2px;
+}
+
+#form-back-btn {
+  background: none;
+}
+
+.form-tab {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 25px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.half-field {
+  grid-column: span 1;
+}
+
+.full-field {
+  grid-column: span 2;
+}
+
+label {
+  font: 18px;
+  font-weight: 600;
+  line-height: 27px;
+  color: var(--grey);
+}
+
+form input,
+form select,
+.pass-field {
+  height: 46px;
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  padding: 10px 15px;
+  color: #000;
+  font-weight: 600;
+  transition: all 0.2s ease-out;
+}
+
+form input.error,
+form select.error,
+.pass-field.error {
+  border-color: rgb(255, 120, 120);
+}
+
+form input::placeholder {
+  color: var(--light-grey);
+  font-weight: 500;
+}
+
+.pass-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#password {
+  width: 100%;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  padding-left: 0;
+}
+
+#password-view-btn {
+  cursor: pointer;
+}
+
+form button,
+form.btn {
+  grid-column: span 2;
+  height: 46px;
+  background-color: var(--blue);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.error-message {
+  width: 100%;
+  height: auto;
+  max-height: 75px;
+  padding: 12px 24px;
+  margin-bottom: 24px;
+  background-color: rgb(252, 199, 199);
+  color: rgb(251, 18, 18);
+  border-radius: 12px;
+  border: rgb(255, 120, 120) solid 1px;
+  overflow: hidden;
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+.error-message.closed {
+  max-height: 0;
+  opacity: 0;
+  margin-bottom: 0;
+  padding: 0 24px;
 }

@@ -4,13 +4,13 @@ define("DB_USERNAME", "admin");
 define("DB_PASSWORD", "12345678");
 define("DB_NAME", "sys");
 
-$mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+$db = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 // if($mysqli->connect_errno){
-//     var_dump("Failed to connect to MySQL: " . $mysqli -> connect_error);
+//     echo ("Failed to connect to database: " . $mysqli -> connect_error);
 //     exit();
 // }else{
-//     var_dump("Connected to database");
+//     echo ("Connected to database");
 // }
 
 ?>

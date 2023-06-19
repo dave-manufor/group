@@ -22,14 +22,6 @@ body {
   min-height: 750px;
 }
 
-.form-container {
-  background-color: white;
-  box-shadow: 20px 20px 95px rgba(0, 0, 0, 0.15);
-  padding: 40px 32px;
-  border-radius: 50px;
-  width: 500px;
-}
-
 .form-container-title-div {
   display: flex;
   flex-direction: row;
@@ -37,97 +29,4 @@ body {
   align-items: center;
   width: 100%;
   margin-bottom: 32px;
-}
-
-.form-title {
-  font-size: 30px;
-  font-weight: 700;
-  line-height: 44px;
-}
-
-.form-title-line {
-  width: 80%;
-  border: 2px solid var(--blue);
-  border-radius: 2px;
-}
-
-#form-back-btn {
-  background: none;
-}
-
-.form-tab {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 25px;
-}
-
-.form-tab.hidden {
-  display: none;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.half-field {
-  grid-column: span 1;
-}
-
-.full-field {
-  grid-column: span 2;
-}
-
-label {
-  font: 18px;
-  font-weight: 600;
-  line-height: 27px;
-  color: var(--grey);
-}
-
-form input,
-form select,
-.pass-field {
-  height: 46px;
-  width: 100%;
-  border-radius: 10px;
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  padding: 10px 15px;
-  color: #000;
-  font-weight: 600;
-}
-
-form input::placeholder {
-  color: var(--light-grey);
-  font-weight: 500;
-}
-
-.pass-field {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#password {
-  width: 100%;
-  border-left: none;
-  border-right: none;
-  border-radius: 0;
-  padding-left: 0;
-}
-
-#password-view-btn {
-  cursor: pointer;
-}
-
-form button {
-  grid-column: span 2;
-  height: 46px;
-  background-color: var(--blue);
-  border-radius: 10px;
-  color: #fff;
-  font-size: 20px;
-  font-weight: 700;
-  margin-top: 10px;
 }

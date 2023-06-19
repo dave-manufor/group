@@ -1,9 +1,9 @@
 <?php
-    require_once("./php/dbConnection.php");
+    require_once("./php/config.php");
 
     $sql = "SELECT * FROM patients";
 
-    $res = $mysqli->query($sql);
+    $res = $db->query($sql);
 
     // print_r($res);
 

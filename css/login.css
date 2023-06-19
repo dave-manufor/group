@@ -1,0 +1,34 @@
+.container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(231, 231, 231);
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+#login-form {
+  width: 100%;
+}
+
+.form-title {
+  width: fit-content;
+  margin-bottom: 32px;
+}
+
+.info {
+  align-self: center;
+  margin-top: 12px;
+  color: rgba(0, 0, 0, 0.578);
+}
+
+.link {
+  color: var(--blue);
+  text-decoration: underline;
+}
