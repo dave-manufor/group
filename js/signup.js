@@ -84,8 +84,9 @@ register_btn.addEventListener("click", async function (e) {
       field.classList.remove("error");
     }
   }
-
-  if (!(await validate())) {
+  const valid = await validate();
+  console.log(valid);
+  if (!valid) {
     e.preventDefault();
     back_btn.onclick();
   }
@@ -106,10 +107,13 @@ const validateEmail = async function () {
   if (data.error) {
     error_container.classList.remove("closed");
     error_container.textContent = data.message;
+    email_field.classList.add("error");
+    email_field.focus();
     return false;
   } else {
     error_container.classList.add("closed");
     error_container.textContent = "";
+    email_field.classList.remove("error");
     return true;
   }
 };
@@ -130,10 +134,13 @@ const validateSSN = async function () {
   if (data.error) {
     error_container.classList.remove("closed");
     error_container.textContent = data.message;
+    ssn_field.classList.add("error");
+    ssn_field.focus();
     return false;
   } else {
     error_container.classList.add("closed");
     error_container.textContent = "";
+    ssn_field.classList.remove("error");
     return true;
   }
 };

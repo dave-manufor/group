@@ -26,7 +26,7 @@
                 echo '<script type="text/javascript">document.location="./login.php?email='.urlencode($email).'"</script>';
               }else{
                 echo '<script>alert("Something went wrong. Try again")</script>';
-                echo '<script type="text/javascript">document.location="./index.php"</script>';
+                echo '<script type="text/javascript">document.location="./signup.php"</script>';
               }
             }
           }

@@ -23,7 +23,7 @@
             <div class="form-tab" id="tab1">
                 <div class="field full-field">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required placeholder="example@gmail.com">
+                    <input type="email" id="email" name="email" required placeholder="example@gmail.com" <?php if(isset($_GET['email'])) echo 'value='.$_GET['email']?>>
                 </div>
                 <div class="field full-field">
                   <label for="password">Password</label>
