@@ -8,6 +8,7 @@ const last_name_field = document.getElementById("last-name");
 const email_field = document.getElementById("email");
 const phone_field = document.getElementById("phone");
 const ssn_field = document.getElementById("ssn");
+const profile_field = document.getElementById("profile-picture");
 const age_field = document.getElementById("age");
 const height_field = document.getElementById("height");
 const blood_group_field = document.getElementById("blood-group");
@@ -24,6 +25,7 @@ const tab1_elements = [
   email_field,
   phone_field,
   ssn_field,
+  profile_field,
 ];
 const tab2_elements = [
   age_field,
@@ -58,6 +60,29 @@ back_btn.onclick = function (e) {
   back_btn.classList.add("hidden");
 };
 
+profile_field.addEventListener("change", function (e) {
+  const selectedfile = e.target.files;
+  if (selectedfile.length > 0) {
+    const [imageFile] = selectedfile;
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+    if (!allowedExtensions.exec(imageFile.name)) {
+      showErrorMessage(
+        "Only .jpeg, .jpg and .png files are allowed",
+        profile_field
+      );
+      e.preventDefault();
+    } else if (imageFile.size > 5 * 1024 * 1024) {
+      showErrorMessage(
+        "Only .jpeg, .jpg and .png files are allowed",
+        profile_field
+      );
+      e.preventDefault();
+    } else {
+      hideErrorMessage(profile_field);
+    }
+  }
+});
+
 password_view_btn.onclick = function (e) {
   if (password_field.type == "password") {
     password_field.type = "text";
@@ -84,11 +109,19 @@ register_btn.addEventListener("click", async function (e) {
       field.classList.remove("error");
     }
   }
+});
+
+form.addEventListener("submit", async function (e) {
+  e.preventDefault();
   const valid = await validate();
-  console.log(valid);
   if (!valid) {
-    e.preventDefault();
     back_btn.onclick();
+  } else {
+    register_btn.innerHTML =
+      '<img src="./Resources/images/loading-icon.svg" alt="loader icon">';
+    // const imgURL = await getImageURL(profile_base64);
+    // profile_url.value = await imgURL;
+    HTMLFormElement.prototype.submit.call(form);
   }
 });
 
@@ -105,15 +138,10 @@ const validateEmail = async function () {
   });
   const data = await response.json();
   if (data.error) {
-    error_container.classList.remove("closed");
-    error_container.textContent = data.message;
-    email_field.classList.add("error");
-    email_field.focus();
+    showErrorMessage(data.message, email_field);
     return false;
   } else {
-    error_container.classList.add("closed");
-    error_container.textContent = "";
-    email_field.classList.remove("error");
+    hideErrorMessage(email_field);
     return true;
   }
 };
@@ -130,17 +158,11 @@ const validateSSN = async function () {
     body: formData,
   });
   const data = await response.json();
-  console.log(data);
   if (data.error) {
-    error_container.classList.remove("closed");
-    error_container.textContent = data.message;
-    ssn_field.classList.add("error");
-    ssn_field.focus();
+    showErrorMessage(data.message, ssn_field);
     return false;
   } else {
-    error_container.classList.add("closed");
-    error_container.textContent = "";
-    ssn_field.classList.remove("error");
+    hideErrorMessage(ssn_field);
     return true;
   }
 };
@@ -155,15 +177,39 @@ const validate = async function () {
   }
 };
 
+const showErrorMessage = function (message, field = null) {
+  error_container.classList.remove("closed");
+  error_container.textContent = message;
+  if (field) {
+    field.classList.add("error");
+    field.focus();
+  }
+};
+const hideErrorMessage = function (field = null) {
+  error_container.classList.add("closed");
+  error_container.textContent = "";
+  if (field) {
+    field.classList.remove("error");
+  }
+};
+
+// const getImageURL = async function (imageString) {
+//   const url = freeimage_URL + "?key=" + freeimage_key;
+//   const imgdata = new FormData();
+//   imgdata.append("source", imageString);
+//   const res = await fetch(url, {
+//     method: "POST",
+//     body: imgdata,
+//   });
+//   if (!res.ok) {
+//     return "";
+//   }
+
+//   const json = await res.json();
+//   imgURL = json.image.url;
+//   return imgURL;
+// };
+
 email_field.onblur = validateEmail;
 
 ssn_field.onblur = validateSSN;
-
-// form.addEventListener("submit", async function (e) {
-//   e.preventDefault();
-//   if (!(await validate())) {
-//     back_btn.onclick();
-//   } else {
-//     form.submit();
-//   }
-// });

@@ -1,8 +1,4 @@
-<?php
-    // echo "LOGIN PAGE";
-    // echo urldecode($_GET['email']);
-?>
-
+<?php $user_type = (isset($_GET['type'])) ? $_GET['type'] : null; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in | Drug Dispenser LLC</title>
     <link rel="stylesheet" href="./css/login.css">
-    <link rel="stylesheet" href="./css/general.css">
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="icon" href="./Resources/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <div class="container">
@@ -40,12 +37,13 @@
                     <label for="user-type">User Type</label>
                     <select name="account-type" id="user-type" required>
                         <option value="">Select Type</option>
-                        <option value="patient">Patient</option>
-                        <option value="admin">Administrator</option>
-                        <option value="pharmacy">Pharmacy</option>
+                        <option value="patient" <?php if($user_type == "patient") echo "selected"?>>Patient</option>
+                        <option value="admin"  <?php if($user_type == "admin") echo "selected"?>>Administrator</option>
+                        <option value="doctor"  <?php if($user_type == "doctor") echo "selected"?>>Doctor</option>
+                        <option value="pharmacy" <?php if($user_type == "pharmacy") echo "selected"?>>Pharmacy</option>
                     </select>
                 </div>
-                <button type="submit" class="form-btn" name="login-btn">Sign in</button>
+                <button type="submit" class="form-btn button-primary" name="login">Sign in</button>
             </div>
         </form>
         <span class="info">Or <a href="./signup.php" class="link">Sign Up</a></span>

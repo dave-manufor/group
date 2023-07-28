@@ -3,8 +3,8 @@
 <!-- Validate SSN once SSN field loses focus -->
 <?php
           require_once("./includes/patientController.php");
-
-          if(isset($_POST['submit'])){
+          $get_email = (isset($_GET['email'])) ? $_GET['email'] : null;
+          if(count($_POST) > 0){
             $fname = $_POST['first-name'];
             $lname = $_POST['last-name'];
             $ssn = $_POST['ssn'];
@@ -16,14 +16,20 @@
             $height = $_POST['height'];
             $age = $_POST['age'];
             $blood_group = $_POST['blood-group'];
+            if(isset($_FILES['profile-image'])){
+              $profile_image = $_FILES['profile-image'];
+            }else{
+              $profile_image = null;
+            }
+
 
             if(!$fname || !$lname || !$ssn || !$email || !$password || !$phone || !$address || !$weight || !$height || !$age || !$blood_group){
-              echo '<script>alert("Kindly ensure that all fields are filled")</script>';
+              echo '<script>alert("Kindly ensure that all required fields are filled")</script>';
             }else{
-              $res = $addPatient($fname, $lname, $ssn, $email, $password, $phone, $address, $weight, $height, $age, $blood_group);
+              $res = $addPatient($fname, $lname, $ssn, $email, $password, $phone, $address, $weight, $height, $age, $blood_group, $profile_image);
               if(!$res['error']){
                 echo '<script>alert("Your account has been created successfully")</script>';
-                echo '<script type="text/javascript">document.location="./login.php?email='.urlencode($email).'"</script>';
+                echo '<script type="text/javascript">document.location="./login.php?email='.urlencode($email).'&type=patient"</script>';
               }else{
                 echo '<script>alert("Something went wrong. Try again")</script>';
                 echo '<script type="text/javascript">document.location="./signup.php"</script>';
@@ -37,12 +43,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/general.css" />
+    <link rel="stylesheet" href="./css/global.css" />
     <link rel="stylesheet" href="./css/signup.css" />
+    <link rel="icon" href="./Resources/images/favicon.ico" type="image/x-icon">
     <title>Patients Registration</title>
   </head>
   <body>
-    <div class="image-section"></div>
+    <div class="image-section"><a href="./index.php"><img class="logo" src="./Resources/images/logo-light.svg"/></a></div>
     <div class="form-section">
       <div class="form-container">
         <div class="form-container-title-div">
@@ -57,7 +64,7 @@
         <div class="error-message closed" id="error-container">
         </div>
             <!-- REVERT -->
-            <form action="" method="post" id="register-form">
+            <form action="" method="post" id="register-form" enctype="multipart/form-data">
               <!-- FORM TAB 1 -->
               <div class="form-tab" id="tab1">
                 <div class="field half-field">
@@ -75,18 +82,25 @@
                     id="email"
                     name="email"
                     placeholder="johndoe@example.com"
+                    <?php if($get_email){?>
+                      value="<?php echo $get_email;?>"
+                      <?php } ?>
                     required
                   />
                 </div>
-                <div class="field full-field">
+                <div class="field half-field">
                   <label for="phone">Phone Number</label>
                   <input type="text" id="phone"  name="phone" placeholder="0111461098" required/>
                 </div>
-                <div class="field full-field">
+                <div class="field half-field">
                   <label for="ssn">Social Security Number</label>
                   <input type="number" id="ssn" name="ssn" placeholder="A10266640" required/>
                 </div>
-                <button class="form-btn" id="continue-btn">Continue</button>
+                <div class="field full-field">
+                  <label for="profile-picture">Profile Picture / Logo</label>
+                  <input type="file" id="profile-picture" name="profile-image" accept="image/*"/>
+                </div>
+                <button class="form-btn button-primary" id="continue-btn">Continue</button>
               </div>
               <!-- FORM TAB 2 -->
               <div class="form-tab hidden" id="tab2">
@@ -143,7 +157,7 @@
                 </div>
                 <div class="field full-field">
                   <label for="password">Password</label>
-                  <div class="pass-field">
+                  <div class="pass-field" id="pass-field">
                     <input type="password" id="password" name="password" required/>
                     <img
                       id="password-view-btn"
@@ -152,7 +166,7 @@
                     />
                   </div>
                 </div>
-                <button type="submit" id="submit-btn" name="submit">Register</button>
+                <button id="submit-btn" class=" button-primary">Register</button>
               </div>
             </form>
       </div>

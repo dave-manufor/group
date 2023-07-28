@@ -1,6 +1,7 @@
 .app {
   width: 100vw;
-  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 header {
@@ -12,6 +13,42 @@ header {
   background-color: var(--blue);
   padding: 24px 32px;
   color: white;
+}
+
+.welcome {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  height: 100%;
+}
+
+.profile-img {
+  background-color: gray;
+  height: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+}
+
+.profile-img img {
+  min-height: 100%;
+  object-fit: cover;
+  min-width: 100%;
+}
+
+.profile-preview {
+  max-height: 100px;
+  width: auto;
+  margin-bottom: 32px;
 }
 
 h1 {
@@ -27,19 +64,17 @@ p {
 }
 
 .container {
-  display: flex;
-  flex-direction: row;
-  height: calc(100% - 100px);
-  width: 100%;
   display: grid;
   grid-template-columns: 300px 1fr;
+  overflow: hidden;
+  height: calc(100vh - 100px);
+  width: 100%;
 }
 
 .sidebar {
-  background-color: rgb(13, 13, 22);
-  color: white;
+  background-color: var(--dark-blue);
   padding: 32px 12px;
-  height: 100%;
+  max-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -51,20 +86,47 @@ p {
   gap: 12px;
 }
 
-.sidebar-links li {
+.sidebar-links a {
+  color: white;
   width: 100%;
   padding: 12px 12px;
   border-radius: 10px;
   transition: all 0.2s;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: 600;
 }
 
-.sidebar-links li:hover {
+.sidebar-links a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-links a.active {
   background-color: var(--blue);
+  color: var(--dark-blue);
+}
+
+.sidebar-links a img {
+  height: 28px;
+  width: auto;
+}
+
+.sidebar-links a.active img {
+  fill: var(--dark-blue);
+}
+
+.sidebar button {
+  width: 100%;
 }
 
 .main {
-  padding: 48px 32px;
+  padding: 48px 32px 0 32px;
+  max-height: 100%;
+  overflow: hidden;
 }
 
 .primary-btn {
@@ -77,4 +139,111 @@ p {
   font-size: 20px;
   font-weight: 700;
   margin-top: 10px;
+}
+
+.title-div {
+  margin-bottom: 36px;
+}
+
+.title span {
+  font-size: 16px;
+  color: var(--blue);
+}
+
+.profile-tab {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.quarter-field {
+  grid-column: span 1;
+}
+.half-field {
+  grid-column: span 2;
+}
+
+form .button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+#update-btn,
+#create-btn {
+  width: max-content;
+}
+
+.content {
+  max-height: calc(100% - 84px);
+  padding: 20px 0 36px 0;
+  overflow-y: scroll;
+}
+
+.flexbox-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 64px;
+}
+
+.user-table-container {
+  overflow-y: scroll;
+  max-height: 400px;
+  width: 80%;
+  margin-bottom: 32px;
+}
+
+.user-details-table {
+  max-height: 600px;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: 2px solid var(--dark-blue);
+}
+
+.user-details-table th {
+  background-color: var(--dark-blue);
+  color: #fff;
+  padding: 8px 12px;
+  position: sticky;
+  top: 0;
+}
+
+.user-details-table thead th:nth-child(1) {
+  width: 10%;
+}
+
+.user-details-table thead th:nth-child(2) {
+  width: 25%;
+}
+
+.user-details-table thead th:nth-child(3) {
+  width: 35%;
+}
+
+.user-details-table thead th:nth-child(4) {
+  width: 20%;
+}
+
+.user-details-table thead th:nth-child(5) {
+  width: 10%;
+}
+
+td img {
+  width: 32px;
+  height: auto;
+}
+
+.user-details-table td {
+  border: 2px solid var(--dark-blue);
+  padding: 4px 8px;
+  text-overflow: ellipsis;
+}
+
+.user-details-table td:last-child {
+  text-align: center;
 }

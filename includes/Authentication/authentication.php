@@ -4,11 +4,12 @@ require_once('./../config.php');
 require_once('./../utilityFunctions.php');
 
     if(isset($_POST['login'])){
-        $user_table = ['patient' => 'patients', 'admin' => 'admins', 'pharmacy' => 'pharmacies'];
-        $user_username_column = ['patient' => 'patient_email', 'admin' => 'admin_email', 'pharmacy' => 'pharmacy_email'];
-        $user_password_column = ['patient' => 'patient_password', 'admin' => 'admin_password', 'pharmacy' => 'pharmacy_password'];
-        $user_first_name_column = ['patient' => 'patient_fname', 'admin' => 'admin_fname', 'pharmacy' => 'pharmacy_name'];
-        $user_id_column = ['patient' => 'patient_id', 'admin' => 'admin_id', 'pharmacy' => 'pharmacy_id'];
+        $user_table = ['patient' => 'patients', 'admin' => 'admins', 'pharmacy' => 'pharmacies', 'doctor' => 'doctors'];
+        $user_username_column = ['patient' => 'patient_email', 'admin' => 'admin_email', 'pharmacy' => 'pharmacy_email', 'doctor' => 'doctor_email'];
+        $user_password_column = ['patient' => 'patient_password', 'admin' => 'admin_password', 'pharmacy' => 'pharmacy_password', 'doctor' => 'doctor_password'];
+        $user_name = ['patient' => 'patient_fname', 'admin' => 'admin_fname', 'pharmacy' => 'pharmacy_name', 'doctor' => 'doctor_fname'];
+        $user_id_column = ['patient' => 'patient_id', 'admin' => 'admin_id', 'pharmacy' => 'pharmacy_id', 'doctor' => 'doctor_id'];
+        $user_profile_column = ['patient' => 'patient_image', 'admin' => 'admin_image', 'pharmacy' => 'pharmacy_image', 'doctor' => 'doctor_image'];
         $res = [];
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -30,8 +31,9 @@ require_once('./../utilityFunctions.php');
                 $row = $result->fetch_assoc();
                 $_SESSION['id'] = $row[$user_id_column[$account_type]];
                 $_SESSION['email'] = $row[$user_username_column[$account_type]];
-                $_SESSION['name'] = $row[$user_first_name_column[$account_type]];
+                $_SESSION['name'] = $row[$user_name[$account_type]];
                 $_SESSION['user-level'] = $account_type;
+                $_SESSION['profile-url'] = $row[$user_profile_column[$account_type]];
 
                 $res['error'] = false;
                 $res['message'] = "Login Succesful";

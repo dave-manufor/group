@@ -6,11 +6,4 @@ define("DB_NAME", "sys");
 
 $db = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
-// if($mysqli->connect_errno){
-//     echo ("Failed to connect to database: " . $mysqli -> connect_error);
-//     exit();
-// }else{
-//     echo ("Connected to database");
-// }
-
 ?>

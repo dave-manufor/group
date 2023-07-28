@@ -18,8 +18,8 @@ password_view_btn.onclick = function (e) {
 
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
-  const email = email_field.value;
-  const pass = password_field.value;
+  // const email = email_field.value;
+  // const pass = password_field.value;
   const formData = new FormData(form);
   formData.append("login", "");
   const res = await fetch(authenticationURL, {

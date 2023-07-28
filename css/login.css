@@ -27,8 +27,3 @@
   margin-top: 12px;
   color: rgba(0, 0, 0, 0.578);
 }
-
-.link {
-  color: var(--blue);
-  text-decoration: underline;
-}

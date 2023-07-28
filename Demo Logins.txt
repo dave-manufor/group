@@ -1,11 +1,15 @@
 Patient:
-username => davemannufor@gmail.com
+username => davemanufor@gmail.com
 password => 0429@Test
 
 Admin:
 username => emailfornow123@gmail.com
 password => 12345678
 
-Pharmacy
+Pharmacy:
 username => info@coptic.co.ke
+password => 12345678
+
+Doctor:
+username => mikebridge@gmail.com
 password => 12345678

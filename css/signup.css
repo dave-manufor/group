@@ -11,6 +11,7 @@ body {
   background-image: url(../Resources/images/hospital-signup-image.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  padding: 24px;
 }
 
 .form-section {
