@@ -29,7 +29,7 @@
               $res = $addPatient($fname, $lname, $ssn, $email, $password, $phone, $address, $weight, $height, $age, $blood_group, $profile_image);
               if(!$res['error']){
                 echo '<script>alert("Your account has been created successfully")</script>';
-                echo '<script type="text/javascript">document.location="./login.php?email='.urlencode($email).'&type=patient"</script>';
+                echo '<script type="text/javascript">document.location="./login.php?email='.urlencode($email).'&type=patient&from=signup"</script>';
               }else{
                 echo '<script>alert("Something went wrong. Try again")</script>';
                 echo '<script type="text/javascript">document.location="./signup.php"</script>';

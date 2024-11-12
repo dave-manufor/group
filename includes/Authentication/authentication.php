@@ -2,6 +2,7 @@
 session_start();
 require_once('./../config.php');
 require_once('./../utilityFunctions.php');
+require_once('./../patientController.php');
 
     if(isset($_POST['login'])){
         $user_table = ['patient' => 'patients', 'admin' => 'admins', 'pharmacy' => 'pharmacies', 'doctor' => 'doctors'];
@@ -34,6 +35,10 @@ require_once('./../utilityFunctions.php');
                 $_SESSION['name'] = $row[$user_name[$account_type]];
                 $_SESSION['user-level'] = $account_type;
                 $_SESSION['profile-url'] = $row[$user_profile_column[$account_type]];
+                // Update Last Login
+                if($account_type == 'patient'){
+                    $updateLastLogin($_SESSION['id']);
+                }
 
                 $res['error'] = false;
                 $res['message'] = "Login Succesful";

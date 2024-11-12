@@ -9,6 +9,7 @@
         $drug_id = $_GET['id'];
         if(isset($_POST['update'])){
           $name = $_POST['name'];
+          $category = $_POST['category'];
           $quantity = $_POST['quantity'];
           $price = $_POST['price'];
           if(isset($_FILES['drug-image']) && $_FILES['drug-image']['name']){
@@ -16,7 +17,7 @@
             }else{
               $drug_image = null;
             }
-          $res = $updateDrug(true, $drug_id, $name, $quantity, $price, $drug_image);
+          $res = $updateDrug(true, $drug_id, $name, $category, $quantity, $price, $drug_image);
           if($res['error']){
               echo "<script>alert('Something went wrong!\n".$res['message']."')</script>";
           }else{
@@ -43,6 +44,7 @@
             }
             if(isset($_POST['create'])){
                 $name = $_POST['name'];
+                $category = $_POST['category'];
                 $quantity = $_POST['quantity'];
                 $price = $_POST['price'];
                 if(isset($_FILES['drug-image']) && $_FILES['drug-image']['name']){
@@ -50,7 +52,7 @@
                     }else{
                     $drug_image = null;
                     }
-                    $res = $addDrug($name, $quantity, $price, $drug_image);
+                    $res = $addDrug($name, $category, $quantity, $price, $drug_image);
                     if($res['error']){
                         echo "<script>alert('Something went wrong!\n".$res['message']."')</script>";
                     }else{

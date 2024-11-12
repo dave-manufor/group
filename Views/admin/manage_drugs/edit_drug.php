@@ -6,6 +6,16 @@
             <input type="text" id="name" name="name" placeholder="Paracetamol" value="<?php echo $drug['drug_name']?>" required/>
         </div>
         <div class="field half-field">
+                        <label for="category">Category</label>
+                        <select name="category" id="category" required>
+                            <option value="">Select Category</option>
+                            <option value="PAINKILLER" <?php if($drug['category'] == "PAINKILLER") echo "selected" ?>>Pain Killer</option>
+                            <option value="ANTIBIOTICS" <?php if($drug['category'] == "ANTIBIOTICS") echo "selected" ?>>Antibiotics</option>
+                            <option value="STIMULANTS" <?php if($drug['category'] == "STIMULANTS") echo "selected" ?>>Stimulants</option>
+                            <option value="INHALANTS" <?php if($drug['category'] == "INHALANTS") echo "selected" ?>>Inhalants</option>
+                        </select>
+                    </div>
+        <div class="field half-field">
             <label for="quantity">Quantity Available</label>
             <input type="number" id="quantity" step="1" name="quantity" placeholder="125" value="<?php echo $drug['quantity']?>" required/>
         </div>

@@ -5,6 +5,11 @@ const password_field = document.getElementById("password");
 const password_field_container = document.getElementById("pass-field");
 const error_container = document.getElementById("error-container");
 const authenticationURL = "./includes/Authentication/authentication.php";
+const registration_alert = document.getElementById("registration-alert");
+
+if (registration_alert) {
+  setTimeout(() => registration_alert.classList.add("inactive"), 4000);
+}
 
 password_view_btn.onclick = function (e) {
   if (password_field.type == "password") {

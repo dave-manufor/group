@@ -11,6 +11,11 @@
 </head>
 <body>
     <div class="container">
+        <?php if(isset($_GET['from']) && $_GET['from'] == "signup"){?>
+            <div class="alert" id="registration-alert">
+                <p>✅ User successfully registered</p>
+            </div>
+        <?php }?>
         <div class="form-container">
         <h1 class="form-title">Log in
             <hr class="form-title-line"/>

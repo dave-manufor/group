@@ -17,14 +17,14 @@ $isDrugExists = function($useId, $identifier) use($db){
     return($count>0);
 };
 
-$addDrug = function($name, $quantity, $price, $drug_image) use($db, $isDrugExists, $addDrugImage){
+$addDrug = function($name, $category, $quantity, $price, $drug_image) use($db, $isDrugExists, $addDrugImage){
     $res = [];
     if($isDrugExists(false, $name)){
         $res['error'] = true;
         $res['response'] = "The drug ".$name." already exists";
     }else{
         $image_location = $addDrugImage($name, $drug_image);
-        $sql = "INSERT INTO drugs(drug_name, quantity, price, drug_image) VALUES ('$name', $quantity, $price, '$image_location')";
+        $sql = "INSERT INTO drugs(drug_name, category, quantity, price, drug_image) VALUES ('$name', '$category', $quantity, $price, '$image_location')";
         if($db->query($sql)){
             $res['error'] = false;
             $res['response'] = "Drug has been created";
@@ -78,10 +78,10 @@ $getAllDrugs = function() use($db){
      }
 };
 
-$updateDrug = function($useId, $identifier, $name, $quantity, $price, $drug_image) use($db, $updateDrugImage){
+$updateDrug = function($useId, $identifier, $name, $category, $quantity, $price, $drug_image) use($db, $updateDrugImage){
     $column = ($useId) ? "drug_id" : "drug_name";
     $image_location = $updateDrugImage($name, $drug_image);
-    $sql = "UPDATE drugs SET drug_name = '$name', quantity = $quantity, price = $price".(($image_location) ? ", drug_image = '$image_location'" : "")." WHERE $column = '$identifier';";
+    $sql = "UPDATE drugs SET drug_name = '$name', category = '$category', quantity = $quantity, price = $price".(($image_location) ? ", drug_image = '$image_location'" : "")." WHERE $column = '$identifier';";
     $res = [];
     try{
         if($db->query($sql)){

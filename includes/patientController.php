@@ -128,7 +128,17 @@ $deletePatient = function($useId, $identifier) use($db, $getPatient, $deleteProf
      }finally{
         return $res;
      }
-}
+};
+
+$updateLastLogin = function($id) use($db){
+    $now = (new DateTime())->format('Y-m-d H:i:s');
+    $sql = "UPDATE patients SET last_login = '$now' WHERE patient_id = '$id'";
+    try{
+        $db->query(($sql));
+    }catch(Exception $error){
+        // Do nothing
+    }
+};
 
 
 

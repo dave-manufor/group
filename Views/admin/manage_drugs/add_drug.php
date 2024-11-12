@@ -7,6 +7,16 @@
                         <input type="text" id="name" name="name" placeholder="Paracetamol"  required/>
                     </div>
                     <div class="field half-field">
+                        <label for="category">Category</label>
+                        <select name="category" id="category" required>
+                            <option value="">Select Category</option>
+                            <option value="PAINKILLER">Pain Killer</option>
+                            <option value="ANTIBIOTICS">Antibiotics</option>
+                            <option value="STIMULANTS">Stimulants</option>
+                            <option value="INHALANTS">Inhalants</option>
+                        </select>
+                    </div>
+                    <div class="field half-field">
                         <label for="quantity">Quantity Available</label>
                         <input type="number" step="1" id="quantity" name="quantity" placeholder="125"  required/>
                     </div>

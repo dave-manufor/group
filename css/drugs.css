@@ -1,0 +1,61 @@
+.filters {
+  display: flex;
+  gap: 32px;
+}
+
+.filter {
+  background-color: white;
+  color: var(--dark-blue);
+  border: 2px solid var(--dark-blue);
+  font-weight: 600;
+  padding: 12px 18px;
+  border-radius: 32px;
+  cursor: pointer;
+}
+
+.filter:hover {
+  transform: scale(0.95);
+}
+
+.filter.active {
+  background-color: var(--dark-blue);
+  color: white;
+}
+
+.drugs {
+  margin: 48px 0;
+  display: flex;
+  gap: 56px;
+  flex-wrap: wrap;
+}
+
+.drug {
+  display: flex;
+  gap: 24px;
+}
+
+.drug .image-wrapper {
+  height: 160px;
+  aspect-ratio: 1;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: -2px 14px 22px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: -2px 14px 22px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: -2px 14px 22px 0px rgba(0, 0, 0, 0.1);
+}
+
+.drug .image-wrapper img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.drug .text-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.drug .text-wrapper h3 {
+  font-size: 18px;
+}

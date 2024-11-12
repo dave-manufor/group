@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/dashboard.css">
     <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/drugs.css">
     <link rel="icon" href="./Resources/images/favicon.ico" type="image/x-icon">
     <title>Dashboard | <?php echo $_SESSION['name'] ?></title>
 </head>

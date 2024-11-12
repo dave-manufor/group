@@ -1,8 +1,8 @@
 <?php
-define("DB_SERVER", "drug-dispenser.c5ti90rujcc1.eu-north-1.rds.amazonaws.com:3306");
-define("DB_USERNAME", "admin");
-define("DB_PASSWORD", "12345678");
-define("DB_NAME", "sys");
+define("DB_SERVER", "localhost:3306");
+define("DB_USERNAME", "root");
+define("DB_PASSWORD", "0429mysql");
+define("DB_NAME", "drugdb");
 
 $db = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
