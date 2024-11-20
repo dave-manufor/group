@@ -30,7 +30,8 @@ $addDoctor = function($fname, $lname, $ssn, $email, $password, $phone, $speciali
         $res['response'] = "The ssn".$ssn." already exists";
     }else{
         $profile_location = $addProfileImage($ssn, $profile_image);
-        $sql = "INSERT INTO doctors(doctor_fname,doctor_lname,doctor_ssn,doctor_email,doctor_password,doctor_mobile, speciality, years_of_experience, opening_time, closing_time, doctor_image) VALUES ('$fname', '$lname', $ssn, '$email', '$password', '$phone', '$speciality', $years_of_experience, '$opening_time', '$closing_time', '$profile_location')";
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO doctors(doctor_fname,doctor_lname,doctor_ssn,doctor_email,doctor_password,doctor_mobile, speciality, years_of_experience, opening_time, closing_time, doctor_image) VALUES ('$fname', '$lname', $ssn, '$email', '$hashed_password', '$phone', '$speciality', $years_of_experience, '$opening_time', '$closing_time', '$profile_location')";
 
         if($db->query($sql)){
             $res['error'] = false;

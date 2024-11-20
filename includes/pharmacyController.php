@@ -30,7 +30,8 @@ $addPharmacy = function($name, $street, $city, $state, $zipcode, $country, $open
         $res['response'] = "The name".$name." already exists";
     }else{
         $profile_location = $addProfileImage($email, $pharmacy_image);
-        $sql = "INSERT INTO pharmacies(pharmacy_name, pharmacy_street, pharmacy_city, pharmacy_state, pharmacy_zipcode, pharmacy_country, opening_time, closing_time, pharmacy_email, pharmacy_password, pharmacy_mobile, pharmacy_image) VALUES ('$name', '$street', '$city', '$state', '$zipcode', '$country', '$opening_time', '$closing_time', '$email', '$password', '$pharmacy_mobile', '$profile_location')";
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO pharmacies(pharmacy_name, pharmacy_street, pharmacy_city, pharmacy_state, pharmacy_zipcode, pharmacy_country, opening_time, closing_time, pharmacy_email, pharmacy_password, pharmacy_mobile, pharmacy_image) VALUES ('$name', '$street', '$city', '$state', '$zipcode', '$country', '$opening_time', '$closing_time', '$email', '$hashed_password', '$pharmacy_mobile', '$profile_location')";
 
         if($db->query($sql)){
             $res['error'] = false;

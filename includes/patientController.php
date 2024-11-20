@@ -30,7 +30,8 @@ $addPatient = function($fname, $lname, $ssn, $email, $password, $phone, $address
         $res['response'] = "The ssn".$ssn." already exists";
     }else{
         $profile_location = $addProfileImage($ssn, $profile_image);
-        $sql = "INSERT INTO patients(patient_fname,patient_lname,patient_ssn,patient_email,patient_password,patient_mobile,patient_address,patient_weight,patient_height,patient_age,patient_blood_group,patient_image) VALUES ('$fname', '$lname', '$ssn', '$email', '$password', '$phone', '$address', '$weight', '$height', '$age', '$blood_group', '$profile_location')";
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO patients(patient_fname,patient_lname,patient_ssn,patient_email,patient_password,patient_mobile,patient_address,patient_weight,patient_height,patient_age,patient_blood_group,patient_image) VALUES ('$fname', '$lname', '$ssn', '$email', '$hashed_password', '$phone', '$address', '$weight', '$height', '$age', '$blood_group', '$profile_location')";
 
         if($db->query($sql)){
             $res['error'] = false;

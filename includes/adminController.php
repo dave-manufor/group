@@ -30,7 +30,8 @@ $addAdmin = function($fname, $lname, $ssn, $email, $password, $phone, $profile_i
         $res['response'] = "The ssn".$ssn." already exists";
     }else{
         $profile_location = $addProfileImage($ssn, $profile_image);
-        $sql = "INSERT INTO admins(admin_fname,admin_lname,admin_ssn,admin_email,admin_password,admin_mobile, admin_image) VALUES ('$fname', '$lname', '$ssn', '$email', '$password', '$phone', '$profile_location')";
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO admins(admin_fname,admin_lname,admin_ssn,admin_email,admin_password,admin_mobile, admin_image) VALUES ('$fname', '$lname', '$ssn', '$email', '$hashed_password', '$phone', '$profile_location')";
 
         if($db->query($sql)){
             $res['error'] = false;
