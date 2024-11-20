@@ -26,10 +26,10 @@ require_once('./../patientController.php');
             $password = $escape_strip_string($password);
             $sql = "SELECT * FROM ".$user_table[$account_type]." WHERE ".$user_username_column[$account_type]." = '".$email."'";
             $result = $db->query($sql);
+            $row = $result->fetch_assoc();
             $count = mysqli_num_rows($result);
-            if($count > 0 && password_verify($password, $result->fetch_assoc()[$user_password_column[$account_type]])){
+            if($count > 0 && password_verify($password, $row[$user_password_column[$account_type]])){
                 // Successful Login
-                $row = $result->fetch_assoc();
                 $_SESSION['id'] = $row[$user_id_column[$account_type]];
                 $_SESSION['email'] = $row[$user_username_column[$account_type]];
                 $_SESSION['name'] = $row[$user_name[$account_type]];
