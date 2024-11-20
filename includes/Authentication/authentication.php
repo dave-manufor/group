@@ -24,7 +24,7 @@ require_once('./../patientController.php');
         }else{
             $email = $escape_strip_string($email);
             $password = $escape_strip_string($password);
-            $sql = "SELECT * FROM ".$user_table[$account_type]." WHERE ".$user_username_column[$account_type]." = '".$email;
+            $sql = "SELECT * FROM ".$user_table[$account_type]." WHERE ".$user_username_column[$account_type]." = '".$email."'";
             $result = $db->query($sql);
             $count = mysqli_num_rows($result);
             if($count > 0 && password_verify($password, $result->fetch_assoc()[$user_password_column[$account_type]])){
