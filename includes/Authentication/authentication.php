@@ -13,7 +13,7 @@ require_once('./../patientController.php');
         $user_profile_column = ['patient' => 'patient_image', 'admin' => 'admin_image', 'pharmacy' => 'pharmacy_image', 'doctor' => 'doctor_image'];
         $res = [];
         $email = $_POST['email'];
-        $password = password_hash($escape_strip_string($_POST['password']), PASSWORD_DEFAULT);
+        $password = $_POST['password'];
         $account_type = $_POST['account-type'];
         if(!$isValidEmail($email)){
             $res['error'] = true;
@@ -23,11 +23,11 @@ require_once('./../patientController.php');
             $res['message'] = "Invalid account type";
         }else{
             $email = $escape_strip_string($email);
-            $password = $password;
-            $sql = "SELECT * FROM ".$user_table[$account_type]." WHERE ".$user_username_column[$account_type]." = '".$email."' AND ".$user_password_column[$account_type]." = '".$password."';";
+            $password = $escape_strip_string($password);
+            $sql = "SELECT * FROM ".$user_table[$account_type]." WHERE ".$user_username_column[$account_type]." = '".$email;
             $result = $db->query($sql);
             $count = mysqli_num_rows($result);
-            if($count > 0){
+            if($count > 0 && password_verify($password, $result->fetch_assoc()[$user_password_column[$account_type]])){
                 // Successful Login
                 $row = $result->fetch_assoc();
                 $_SESSION['id'] = $row[$user_id_column[$account_type]];
