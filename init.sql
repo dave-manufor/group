@@ -31,7 +31,7 @@ CREATE TABLE `admins` (
   `admin_lname` varchar(20) NOT NULL,
   `admin_image` varchar(50) DEFAULT NULL,
   `admin_email` varchar(25) NOT NULL,
-  `admin_password` varchar(25) NOT NULL,
+  `admin_password` varchar(70) NOT NULL,
   `admin_mobile` varchar(25) NOT NULL,
   `admin_created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`admin_id`)
@@ -80,7 +80,7 @@ CREATE TABLE `api_users` (
   `lname` varchar(45) NOT NULL,
   `registered_on` datetime DEFAULT CURRENT_TIMESTAMP,
   `email` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `password` varchar(70) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -126,7 +126,7 @@ CREATE TABLE `doctors` (
   `closing_time` time DEFAULT NULL,
   `doctor_image` varchar(50) DEFAULT NULL,
   `doctor_email` varchar(25) NOT NULL,
-  `doctor_password` varchar(25) NOT NULL,
+  `doctor_password` varchar(70) NOT NULL,
   `doctor_mobile` varchar(25) NOT NULL,
   `doctor_created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`doctor_id`)
@@ -173,7 +173,7 @@ CREATE TABLE `patients` (
   `patient_blood_group` enum('A-','A+','B-','B+','AB-','AB+','O-','O+') NOT NULL,
   `patient_image` varchar(50) DEFAULT NULL,
   `patient_email` varchar(25) NOT NULL,
-  `patient_password` varchar(25) NOT NULL,
+  `patient_password` varchar(70) NOT NULL,
   `patient_mobile` varchar(25) NOT NULL,
   `patient_created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_login` datetime DEFAULT NULL,
@@ -205,7 +205,7 @@ CREATE TABLE `pharmacies` (
   `closing_time` time NOT NULL,
   `pharmacy_image` varchar(50) DEFAULT NULL,
   `pharmacy_email` varchar(25) NOT NULL,
-  `pharmacy_password` varchar(25) NOT NULL,
+  `pharmacy_password` varchar(70) NOT NULL,
   `pharmacy_mobile` varchar(25) NOT NULL,
   `pharmacy_created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`pharmacy_id`)
